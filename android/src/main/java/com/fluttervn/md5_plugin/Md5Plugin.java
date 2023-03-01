@@ -11,11 +11,11 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-//import io.flutter.plugin.common.MethodCall;
-//import io.flutter.plugin.common.MethodChannel;
-//import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-//import io.flutter.plugin.common.MethodChannel.Result;
-//import io.flutter.plugin.common.PluginRegistry.Registrar;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** Md5Plugin */
 public class Md5Plugin { //implements MethodCallHandler
@@ -37,22 +37,22 @@ public class Md5Plugin { //implements MethodCallHandler
 
   private final int BUFFER_SIZE = 1024 * 8;
 
-//  /** Plugin registration. */
-//  public static void registerWith(Registrar registrar) {
-//    final MethodChannel channel = new MethodChannel(registrar.messenger(), "md5_plugin");
-//    channel.setMethodCallHandler(new Md5Plugin());
-//  }
+ /** Plugin registration. */
+ public static void registerWith(Registrar registrar) {
+   final MethodChannel channel = new MethodChannel(registrar.messenger(), "md5_plugin");
+   channel.setMethodCallHandler(new Md5Plugin());
+ }
 
-//  @Override
-//  public void onMethodCall(MethodCall call, Result result) {
-//    if("getMD5".equals(call.method)){
-//      String path= call.argument("file_path");
-//      Log.d("MD5Plugin","getMD5 @filepath="+path);
-//      result.success(getFileChecksum(path));
-//    } else {
-//      result.notImplemented();
-//    }
-//  }
+ @Override
+ public void onMethodCall(MethodCall call, Result result) {
+   if("getMD5".equals(call.method)){
+     String path= call.argument("file_path");
+     Log.d("MD5Plugin","getMD5 @filepath="+path);
+     result.success(getFileChecksum(path));
+   } else {
+     result.notImplemented();
+   }
+ }
 
   private String getFileChecksum(String filePath) {
     File file=new File(filePath);
